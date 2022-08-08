@@ -1,0 +1,48 @@
+//Leetcode Easy, problem 1, two Sum ... First solution will be brute force, Second solution will involve a hash-map
+
+
+//PROBLEM: 
+//Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+//You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+//You can return the answer in any order.
+
+
+
+//Pseudocode thinking. A brute force approach can check every possible combination of elements in the array to see if they add up to target. 
+//One way to do this is to use two for loops (one nested) to check every combination. Then placing an IF statement to see whether or not 
+//a solution is available. One solution to check for two numbers that add up to target is to have the nested for loop look for a complement 
+//number such that the complement and any given element within the array add up to target. This complement can be calculated by subtracted 
+//that element from target, so it would look like target - whichever element is selected.
+class BFSolution {
+    public int[] twoSum(int[] nums, int target) {
+        
+        for (int i = 0; i < nums.length; i++){
+        //This first for loop iterates through the entire array
+        
+            for(int j = i + 1; j < nums.length; j++){
+            //This for loop checks every other element in the array, except for i
+            //The following code will be run across the rest of the elements, except for i
+            //This ensures every combination will be checked, and also makes sure that the same element is not used twice
+            
+                int complement = target - nums[i];
+                //We create a new int named complement so that our next piece of code knows which number to look for.
+                //As per the problem, we must find two numbers that add up to a given target
+                //If the first number is some number in the array, the other number that adds up to target will be the target - that first number.
+                if(nums[j] == complement){
+                //Because this is in the second for loop, every other number besides i will be checked whether or not it matches the complement
+                    return new int[]  { i , j };
+                    //This returns the indices of the numbers that add up to target, as per the instructions
+                }
+            }
+        }
+        throw new IllegalArgumentException("No Match Found!");
+        //In this Leetcode problem, it is assumed that a solution will always exist, but in real world, it's safe to throw exceptions if there isn't any matches
+    }
+    
+    //In summary, this solution makes use of two FOR loops. Given an array size of 5 elements, the most operations performed would be 25. 
+    //This is because the first FOR loop iterates through the array, giving us 5 operations, and then the second FOR loop iterates 
+    //through every other element for each of the first FOR loop's operations. Giving us 5*5. In big O(n), this would mean that this solution's
+    //time complexity is O(n^2). Although this solution is not the best time wise, it is a great exercise for teaching us how to navigate
+    //iterative problems.
+}
