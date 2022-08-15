@@ -46,3 +46,43 @@ class BFSolution {
     //time complexity is O(n^2). Although this solution is not the best time wise, it is a great exercise for teaching us how to navigate
     //iterative problems.
 }
+
+//Why should we learn Data Structures & Algorithms? Well, one answer is that it can teach us new ways to think, break down problems, and solve them.
+//Although this code works, it is very slow. We need to find a solution with a faster time complexity. Making use of what we learned in DS&A, 
+//We can use a Hashmap to store the elements in the array. Since Hashmaps have constant time look-up, this would greatly reduce our time complexity.
+
+
+//Pseudocode thinking: Although we are using a hashmap to reduce the time complexity, we still would need a For loop to run through each element of the array
+//We must also initialize the array before writing the For loop. Inside the For loop, our code can look pretty similar in that we are looking for a complement 
+//of the target.
+
+//Here is a solution that uses a Hashmap:
+class HSMPSolution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> num_map = new HashMap<>();
+        //Initialize the Integer hashmap
+        
+        for (int i = 0; i < nums.length; i++){
+        //Iterates through each element of the array
+            int complement = target - nums[i];
+            //Defining the complement so our next piece of code knows what to look for
+            
+            if(num_map.containsKey(complement)){
+            //This if statement checks for the complement, using code for the hashmap
+                return new int[] { i, num_map.get(complement) };
+                //If true, this line of code returns a new array of the selected element and complement.
+                
+            }
+            num_map.put(nums[i], i);
+            //Places elements of the array into the hashmap
+        }
+        throw new IllegalArgumentException("No Match Found!");
+        //Just in case there are no solutions
+    }
+}
+//The time complexity of this solution is o(n). Adding up all the operations, the For loop, if statement, and hashmap look up, we get o(n) * o(1) * o(1). We 
+//still need a For loop to iterate through each element of the array and since the rest of the code is constant (hashmap and if), we get a final time
+//complexity of o(n). 
+
+//As you can see, this Leetcode Easy problem is a great demonstration of why to learn Data Structures & Algorithms. We applied a different train of thought 
+//in order to solve a problem, reduce its time complexity, and learned how to solve difficult problems. This is perhaps one of my favorite leetcode problems!
