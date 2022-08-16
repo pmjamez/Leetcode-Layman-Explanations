@@ -1,0 +1,17 @@
+//PROBLEM: Given an integer x, return true if x is palindrome integer. An integer is a palindrome when it reads the same backward as forward.
+
+//A palindrome is a number that can be read the same backward and forward. So 121 is a palindrome whilst 122 is not. One method we can implement
+//is by reversing the given integer and checking whether or not it matches the original integer. If it does, it's a palindrome! 
+
+
+//This solution makes use of Java's StringBuilder, which is built in and reverses strings. We can convert the integer into a string, reverse it, and compare
+class Solution {
+    public boolean isPalindrome(int x) {
+        String num = String.valueOf(x); //Converts the value of int x into a String, and places it into a String named num
+        String reverse = new StringBuilder(num).reverse().toString(); //Reverses the String and places it into a String named Reverse
+        
+        return (num.equals(reverse)); //checks if num and reverse are equal.
+        }
+    }
+   
+//Follow up: Could you solve it without converting the integer to a string?
