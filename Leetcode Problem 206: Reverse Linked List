@@ -1,0 +1,49 @@
+//PROBLEM: Given the head of a singly linked list, reverse the list, and return the reversed list
+
+//In order to answer this question, we must understand what a linked list is. A linked list is a data structure in which elements are stored in nodes.
+//These nodes point to each other with pointers. Depending on what type of linked list (singly, doubly, circular, etc), these pointers could be going
+//in strictly one direction or could be back and forth. Linked Lists are useful data structures because they have efficient insertion and deletion .
+//To give some perspective, an array (when declared) is a fixed size. So if you needed to add an element to an array (in most cases), you could not.
+//If a programmer needs a data structures where they know elements will need to be removed and inserted, they may prefer a linked list over an array.
+
+//This problem asks us to reverse a singly linked list, meaning that all the pointers point in one direction. 
+//Before we start, head refers to the starter node, head.next refers to the node after head, and prev refers to the previous node 
+
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null; //initialize prev as null (before 1st node)
+        ListNode next = null; //initialize next
+        while(head != null){ //while loop goes through all the elements, stops when head is null 
+            next = head.next; //stores the value of the next node in next, important that this is first because head.next changes
+            head.next = prev; //stores the value of prev (null) into head.next, which changes the pointer of head node to point to null
+            prev = head; // places prev on head node
+            head = next; // uses the value stored in next on line 18, moves to the next node 
+        }
+        return prev; //after loop is finished, prev will be on the last node
+    }
+}
+
+//Kind of hard to visualize, but let's try with an example
+
+
+// NULL -> 1 -> 2 -> 3 -> NULL
+
+//Starting at line 15 and 16, we must first initialize ListNode prev and next as NULL. So right now, prev and next are NULL
+//The while loop says that whilst head does not equal null, it will perform the operation
+//Line 18 makes ListNode next point to 2 instead of NULL
+//line 19 declares that the node after head (which is currently at 1) will be Listnode prev, which is currently pointing at NULL
+
+// NULL <- 1 -> 2 -> 3 -> NULL
+
+//The LinkedList now looks like this
+
+//Line 20 declares that ListNode prev will now point to 1, this sets up the future operations
+//Line 21 declares that the head node is now pointing to next, which is at 2. 
+//head is still not null, so we start at Line 18 again
+//Stores the value after the current head node in ListNode next, so that next is pointing to 3, this sets up future operations
+//Line 19 declares that the node after head will now be prev, which is 1
+
+// NULL <- 1 <- 2 -> 3 -> NULL
+
+//This goes on until all the pointers are switched until the code hits Null. once it hits Null, the code returns prev, which would be pointing at 3
